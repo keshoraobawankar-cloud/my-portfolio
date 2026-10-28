@@ -1,12 +1,15 @@
+export type PortfolioTheme = 'noir' | 'barcelona' | 'paper';
+
 export interface Project {
   id: string;
   title: string;
   category: 'client' | 'product' | 'game' | 'web';
-  status: 'Delivered' | 'In Progress' | 'Live';
+  status: 'Shipped' | 'In Progress' | 'Live';
   statusType: 'delivered' | 'progress' | 'live';
   subtitle: string;
   description: string;
-  longDescription: string;
+  problemStatement: string;
+  solutionSummary: string;
   technologies: string[];
   highlights: string[];
   clientOrContext: string;
@@ -38,11 +41,4 @@ export interface Milestone {
   description: string;
   takeaway: string;
   isCurrent: boolean;
-}
-
-export interface AuditionPoint {
-  topic: string;
-  question: string;
-  keyAnswer: string;
-  technicalDetails: string[];
 }

@@ -1,25 +1,27 @@
-import { Project, SkillCategory, Milestone, AuditionPoint } from '../types';
+import { Project, SkillCategory, Milestone } from '../types';
 
 export const PERSONAL_INFO = {
   name: 'Harsh Bawankar',
-  fullName: 'Harsh Ketan Bawankar',
-  title: 'B.Tech CSE Student & Aspiring Web Developer',
-  headline: 'B.Tech CSE Student | Exploring AI & Technology | Building, Learning, and Turning Ideas into Reality | Aspiring Entrepreneur',
+  fullName: 'Harsh Bawankar',
+  title: 'B.Tech CSE Student & Product Builder',
+  roles: ['B.Tech CSE Student', 'App & Tool Builder', 'Aspiring Entrepreneur'],
+  headline: '1st Year CSE at Ramdeobaba University · Building Real Products as I Learn',
   institution: 'Ramdeobaba University (RBU)',
   degree: 'B.Tech, Computer Science & Engineering (1st Year)',
   period: '2026 – Present',
   location: 'Nagpur, Maharashtra, India',
+  shortLocation: 'Nagpur, India',
   zipCode: '440003',
-  email: '26bawankarhk@rbunagpur.in',
+  email: 'keshoraobawankar@gmail.com',
+  secondaryEmail: '26bawankarhk@rbunagpur.in',
   phone: '+91 93250 51476',
   github: 'https://github.com/keshoraobawankar-cloud',
   githubHandle: 'keshoraobawankar-cloud',
   instagram: 'https://www.instagram.com/_unwrittenway/',
   instagramHandle: '@_unwrittenway',
   resumeUrl: '/assets/aistudio/Harsh_Bawankar_Resume_8f1a6895.pdf',
-  portfolioZipUrl: '/assets/aistudio/Harsh_Bawankar_Web_Development_Portfolio_ac85a303.zip',
-  recruitmentTaskPdfUrl: '/assets/aistudio/web-development-task_copy_0c71c1cd.pdf',
-  summary: `First-year Computer Science student who builds as he learns. Hands-on with HTML, CSS, C, and Python, with several app and game projects started and one client app delivered. Believes consistency beats natural talent, and is looking to learn from and build alongside other makers in a collaborative tech community.`,
+  heroBio: `Hi, Harsh Bawankar here — a first-year Computer Science student at Ramdeobaba University turning ideas into working tools. I build as I learn using C, Python, and AI-assisted development workflows, with one custom client PDF app shipped, a food safety platform in progress, and browser logic games built to sharpen problem solving.`,
+  summary: `First-year Computer Science student who builds as he learns. Practicing C and Python alongside AI-assisted app prototyping, with several app and game projects started and one client business app delivered. Believes consistency beats natural talent, and loves collaborating with fellow makers to turn ideas into real software.`,
   coreTenet: 'Consistency beats natural talent.',
   subPhilosophy: 'Turn concepts into working experiments. Small, disciplined steps compound into lasting engineering ability.',
 };
@@ -29,21 +31,25 @@ export const PROJECTS: Project[] = [
     id: 'client-pdf-app',
     title: 'Client Business & PDF App',
     category: 'client',
-    status: 'Delivered',
+    status: 'Shipped',
     statusType: 'delivered',
-    subtitle: 'Custom business workflow & document processing utility',
-    description: 'Customized an app for a client to support automated PDF handling and day-to-day business operations, tailored to real user requirements.',
-    longDescription: `Delivered a custom desktop/web tool engineered to streamline repetitive document handling tasks for a real-world client. The client required dependable, offline-friendly PDF operations including batch collation, receipt generation, invoice previewing, and document formatting. Built with a focus on ease of use, robust file handling, and reliable day-to-day operations.`,
-    technologies: ['HTML5', 'CSS3', 'JavaScript', 'PDF Generation', 'File API', 'Client Workflow'],
+    subtitle: 'Custom commercial workflow & automated PDF processing utility',
+    description:
+      'Customized and delivered an application for a commercial client to streamline daily PDF handling, document stamping, and repetitive business paperwork.',
+    problemStatement:
+      'A local commercial client spent hours manually collating receipts, stamping confidential invoices, and formatting repetitive business PDFs across disconnected tools, causing delays and formatting mistakes in daily operations.',
+    solutionSummary:
+      'Scoped requirements directly with the client and delivered a streamlined, easy-to-use document utility featuring instant watermark previews, structured invoice/voucher templates, and one-click batch preparation tailored to non-technical staff.',
+    technologies: ['Client Discovery', 'PDF Processing', 'Workflow Automation', 'AI-Assisted Prototyping', 'File Handling'],
     highlights: [
-      'Delivered on real client specifications with rapid turnaround',
-      'Engineered structured document preview and export pipelines',
-      'Replaced manual multi-step paperwork with automated digital actions',
-      '100% client satisfaction on delivery and everyday utility'
+      'Delivered on real commercial specifications with rapid turnaround',
+      'Built live document stamp previewing before export to prevent errors',
+      'Replaced manual multi-step paperwork with fast digital batch actions',
+      'Adopted for reliable day-to-day business operations'
     ],
-    clientOrContext: 'Independent Commercial Client',
+    clientOrContext: 'Commercial Client · Delivered',
     year: '2026',
-    role: 'Solo Developer & Solution Designer',
+    role: 'Solo Builder & Solution Designer',
     hasInteractiveDemo: true,
     demoType: 'pdf-app',
   },
@@ -53,19 +59,23 @@ export const PROJECTS: Project[] = [
     category: 'product',
     status: 'In Progress',
     statusType: 'progress',
-    subtitle: 'Digital hygiene compliance & inspection scoring workflow',
-    description: 'Designing and building an app centered on food safety, practicing app structure, intuitive UI flows, and systematic feature planning.',
-    longDescription: `An ongoing engineering initiative to digitize food safety and compliance auditing. Designed for campus canteens, small cafes, and food vendors to conduct structured hygiene checks, log storage temperatures, flag allergen cross-contamination risks, and maintain inspection transparency with clear safety scorecards.`,
-    technologies: ['UI Architecture', 'HTML/CSS/JS', 'State Modeling', 'Inspection Rubrics', 'Responsive Flow'],
+    subtitle: 'Digital hygiene compliance checklist & live grading workflow',
+    description:
+      'Designing and building an application centered on food safety inspections, practicing clean app architecture, intuitive user flows, and structured feature planning.',
+    problemStatement:
+      'Small food vendors, cafes, and campus kitchens often track daily cold-storage temperatures, allergen warnings, and sanitation checks on paper clipboards that are hard to audit consistently.',
+    solutionSummary:
+      'Architecting a mobile-friendly digital inspection workflow with weighted hygiene criteria, real-time compliance scoring (0–100), automatic grade calculation, and clear action alerts.',
+    technologies: ['Product Architecture', 'UI Flow Design', 'Weighted Scoring Logic', 'Responsive Prototyping'],
     highlights: [
-      'Comprehensive inspection checklist modeled after hygiene standards',
-      'Dynamic real-time grading and compliance indicator',
-      'Allergen tracking matrix and temperature violation alerts',
-      'Clean mobile-friendly layout for quick on-the-spot audits'
+      'Weighted hygiene rubric with instant compliance score calculation',
+      'Real-time Grade A / B / C status feedback as checks are logged',
+      'Covers cold storage, surface separation, and allergen labeling',
+      'Designed for fast thumb-friendly inspections on mobile screens'
     ],
-    clientOrContext: 'Independent Product Initiative',
+    clientOrContext: 'Independent Product Build',
     year: '2026',
-    role: 'Product Architect & Frontend Developer',
+    role: 'Product Creator & Builder',
     hasInteractiveDemo: true,
     demoType: 'food-safety',
   },
@@ -75,147 +85,162 @@ export const PROJECTS: Project[] = [
     category: 'game',
     status: 'In Progress',
     statusType: 'progress',
-    subtitle: 'Algorithmic state machines & interactive mini-games',
-    description: 'Started two games to learn core programming logic, event loops, user interaction, and iterative design through hands-on play.',
-    longDescription: `A hands-on exploration of core computer science fundamentals through game development. These projects focus on turn-based state machines, win-condition matrix checks, deterministic AI opponent algorithms, and real-time DOM updates. Meets the Technical Club Domain 02 Mini-Games and Gamified Portfolio specifications.`,
-    technologies: ['Game Logic', 'DOM Manipulation', 'Event Loops', 'State Machines', 'Algorithmic Checks'],
+    subtitle: 'Turn-based state logic, deduction loops & playable mini-games',
+    description:
+      'Started two interactive browser games to practice core programming logic, turn cycles, win-condition checks, and iterative design through hands-on play.',
+    problemStatement:
+      'Learning control flow and algorithms purely through textbook console exercises lacks immediate visual feedback and real user interaction edge cases.',
+    solutionSummary:
+      'Built two playable browser games—Tactical Tic-Tac-Toe (with both heuristic AI bot and 2-player local pass-and-play) and Binary Number Deduction—complete with score tracking, instant resets, and Web Audio sound synthesis.',
+    technologies: ['Algorithmic Logic', 'State Machines', 'Heuristic Bot Logic', 'Web Audio Synthesis'],
     highlights: [
-      'Playable right in the browser with score tracking and instant restart',
-      'Clean state transitions without third-party game frameworks',
-      'Built-in AI opponent mode with minimax heuristic logic',
-      'Immediate visual and sound feedback upon moves and win events'
+      'Playable live with win-line highlighting and persistent scoreboard',
+      'Supports both tactical bot opponent and 2-player pass-and-play',
+      'Binary-search number deduction challenge with directional hints',
+      'Zero external audio assets—synthesizes crisp chimes via Web Audio API'
     ],
-    clientOrContext: 'Technical Club Recruitment & Learning Lab',
+    clientOrContext: 'Personal Logic & Game Lab',
     year: '2026',
-    role: 'Game Programmer',
+    role: 'Game Logic Builder',
     hasInteractiveDemo: true,
     demoType: 'game-logic',
   },
   {
-    id: 'web-dev-recruitment-portfolio',
-    title: 'Technical Club Portfolio Showcase',
+    id: 'interactive-personal-portfolio',
+    title: 'Interactive Developer Portfolio',
     category: 'web',
     status: 'Live',
     statusType: 'live',
-    subtitle: 'Engineered for Technical Club Recruitment 2026 (Domain 02)',
-    description: 'A comprehensive, accessible personal platform demonstrating creativity, clean HTML/CSS architecture, and working interactive features.',
-    longDescription: `Designed specifically to fulfill and exceed the requirements of Domain 02 (Web Development) for the 2026 Technical Club recruitment. Demonstrates modern semantic layout, zero-pill typography, real interactive tools, sound synthesis, and an Audition Presentation Mode for live laptop demonstration.`,
-    technologies: ['HTML5 & Modern CSS', 'TypeScript', 'Clean UI', 'Web Audio API', 'Accessibility WCAG AA'],
+    subtitle: 'Personal web platform with terminal shell, live demos & multi-theme engine',
+    description:
+      'A fast, responsive personal platform combining an interactive command-line card, live playable project prototypes, and instant dark/light atmosphere switching.',
+    problemStatement:
+      'Static text resumes fail to show how a builder thinks, experiments, and ships interactive software—especially early in a computer science degree.',
+    solutionSummary:
+      'Engineered an interactive portfolio featuring a working command-line terminal card, embedded live simulations for shipped and active projects, and seamless theme switching.',
+    technologies: ['TypeScript', 'React', 'Tailwind CSS', 'Motion Animations', 'Web Audio API'],
     highlights: [
-      'Zero-pill typographic hierarchy adhering to production guidelines',
-      'Integrated live demos for each project',
-      'Audition Presentation guide for club evaluators',
-      'Light/Dark mode with seamless persistent state'
+      'Interactive terminal card with typing animation and shell commands',
+      'Embedded live prototypes inside every major project detail view',
+      'Rich #0b0f19 developer dark theme with instant light/mesh switching',
+      'Full mobile responsiveness with smooth slide-in navigation'
     ],
-    clientOrContext: 'Technical Club Recruitment 2026 Submission',
+    clientOrContext: 'Personal Web Platform',
     year: '2026',
-    role: 'Lead Developer',
+    role: 'Creator & Builder',
     hasInteractiveDemo: false,
   }
 ];
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    name: 'Web Development',
+    name: 'Programming Foundations',
     number: '01',
-    description: 'Semantic structure, responsive layouts, and interactive frontend design',
-    skills: [
-      {
-        name: 'HTML5',
-        level: 'Practicing & Expanding',
-        experience: 'Semantic markup, accessible forms, audio integration, document structure',
-        details: 'Crafting clean semantic layouts that prioritize readability, SEO, and accessibility without relying on bloated boilerplate.',
-        icon: 'code'
-      },
-      {
-        name: 'CSS3 & Modern Styling',
-        level: 'Practicing & Expanding',
-        experience: 'Flexbox, CSS Grid, custom properties, responsive media queries, transitions',
-        details: 'Deeply comfortable with modern layout techniques, spacing math, subtle transitions, and dark/light theme systems.',
-        icon: 'layout'
-      },
-      {
-        name: 'JavaScript & DOM Manipulation',
-        level: 'Foundational',
-        experience: 'Event listeners, IntersectionObserver, Web Storage, state management',
-        details: 'Building dynamic user interactions, responsive navigation menus, interactive calculators, and browser game loops.',
-        icon: 'zap'
-      }
-    ]
-  },
-  {
-    name: 'Programming & Foundations',
-    number: '02',
-    description: 'Core logic, algorithmic thinking, and structural software development',
+    description: 'Core logic, structured problem solving, and foundational CS languages',
     skills: [
       {
         name: 'C Programming',
-        level: 'Foundational / Practicing',
-        experience: 'Control flow, pointers, memory allocation, arrays, structs, modular logic',
-        details: 'Practicing low-level logic, understanding how hardware and memory operate under the hood to write performant code.',
+        level: 'Practicing',
+        experience: 'Control flow, loops, arrays, functions, pointers, structured logic',
+        details: 'Building strong fundamentals in how programs execute step-by-step, writing deterministic logic and practicing algorithmic problem solving.',
         icon: 'terminal'
       },
       {
         name: 'Python',
-        level: 'Learning & Exploring',
-        experience: 'Scripting, data structures, automation basics, algorithmic problem-solving',
-        details: 'Developing confidence with Python syntax, quick scripting, string manipulation, and automation pipelines.',
+        level: 'Learning',
+        experience: 'Scripting basics, data handling, problem-solving exercises',
+        details: 'Expanding confidence in Python syntax, clean scripting, and translating logical ideas into readable code.',
         icon: 'file-code'
+      },
+      {
+        name: 'Algorithmic Logic',
+        level: 'Practicing',
+        experience: 'Binary deduction, turn-based game rules, condition matrices',
+        details: 'Applying classroom logic directly to interactive mini-games and practical decision flows.',
+        icon: 'cpu'
       }
     ]
   },
   {
-    name: 'Tools & Workflow',
-    number: '03',
-    description: 'Modern developer toolchain, collaboration, and rapid prototyping',
+    name: 'AI-Assisted Building',
+    number: '02',
+    description: 'Turning product ideas into working applications using modern AI workflows',
     skills: [
       {
-        name: 'Git & GitHub',
-        level: 'Active Daily Use',
-        experience: 'Version control, repositories, commits, branch management, deployment',
-        details: 'Maintains personal repositories, organizes project commits, and follows clean versioning conventions.',
-        icon: 'git-branch'
-      },
-      {
-        name: 'AI Engineering & Debugging Tools',
-        level: 'Active Workflow',
-        experience: 'Assisted code generation, bug triage, architectural research, test cases',
-        details: 'Leverages AI tools thoughtfully to accelerate debugging, explore new libraries, and iterate on product concepts while understanding every line of code.',
+        name: 'AI Coding & Prototyping',
+        level: 'Daily Workflow',
+        experience: 'Iterative prompting, feature scaffolding, UI iteration, rapid MVPs',
+        details: 'Uses AI engineering tools intentionally to bridge the gap between product ideas and working software while learning how each component fits together.',
         icon: 'sparkles'
       },
       {
-        name: '3D Modelling & Graphics (Exploring)',
-        level: 'Curiosity & Exploration',
-        experience: 'Spatial geometry, visual design, blender basics, asset styling',
-        details: 'Eager interest in bridging code and digital visual craft, experimenting with visual design and spatial representations.',
+        name: 'Debugging & Research',
+        level: 'Active Use',
+        experience: 'Tracing bugs, testing edge cases, researching technical approaches',
+        details: 'Breaks down errors systematically, verifies fixes through hands-on testing, and iterates until workflows feel dependable.',
+        icon: 'zap'
+      },
+      {
+        name: 'Web App Exploration',
+        level: 'Exploring',
+        experience: 'Understanding page structure, interactive states, user-facing flows',
+        details: 'Learning how modern web interfaces work by building and customizing real projects rather than memorizing syntax passively.',
+        icon: 'layout'
+      }
+    ]
+  },
+  {
+    name: 'Tools & Creative Craft',
+    number: '03',
+    description: 'Version control, product structuring, and visual curiosity',
+    skills: [
+      {
+        name: 'Git & GitHub',
+        level: 'Active Use',
+        experience: 'Repositories, version history, project publishing, code backup',
+        details: 'Maintains organized GitHub repositories to track progress, share builds, and collaborate cleanly.',
+        icon: 'git-branch'
+      },
+      {
+        name: 'Product & UI Flow Planning',
+        level: 'Practicing',
+        experience: 'Requirement gathering, user empathy, screen-by-screen flow design',
+        details: 'Translates real client or user problems—like invoice PDF stamping or food safety checklists—into simple, intuitive steps.',
+        icon: 'code'
+      },
+      {
+        name: '3D Modelling & Graphics',
+        level: 'Exploring',
+        experience: 'Spatial design curiosity, visual composition, digital craft',
+        details: 'Exploring 3D modelling and graphics alongside software to combine visual creativity with engineering.',
         icon: 'box'
       }
     ]
   },
   {
-    name: 'Engineering Tenets',
+    name: 'Builder Mindset',
     number: '04',
-    description: 'Mindset and communication principles guiding every build',
+    description: 'Principles and habits that drive daily growth',
     skills: [
       {
         name: 'Consistency Over Talent',
         level: 'Core Creed',
-        experience: 'Daily commits, relentless iteration, finishing what is started',
-        details: 'Believes true engineering excellence comes from disciplined, repeated practice rather than fleeting bursts of motivation.',
+        experience: 'Steady daily practice, shipping early, improving every week',
+        details: 'Believes lasting capability comes from showing up consistently and finishing real projects step by step.',
         icon: 'check-circle'
       },
       {
-        name: 'Build to Understand',
-        level: 'Learning Method',
-        experience: 'Learning by implementing real features rather than passive video watching',
-        details: 'Transforms classroom theory immediately into functioning browser apps and executable code.',
+        name: 'Build to Learn',
+        level: 'Method',
+        experience: 'Learning through real client & personal builds instead of passive theory',
+        details: 'Starts real apps and games early in 1st year so every obstacle teaches a practical lesson.',
         icon: 'cpu'
       },
       {
-        name: 'Collaborative Communication',
-        level: 'Soft Skill',
-        experience: 'Teamwork, active listening, taking feedback, sharing progress openly',
-        details: 'Excited to contribute to campus technical clubs, peer hackathons, and community-driven projects.',
+        name: 'Teamwork & Communication',
+        level: 'Strength',
+        experience: 'Client listening, peer collaboration, openness to mentorship',
+        details: 'Enjoys collaborating with fellow builders, taking constructive feedback, and shipping practical solutions together.',
         icon: 'users'
       }
     ]
@@ -229,8 +254,8 @@ export const MILESTONES: Milestone[] = [
     title: 'B.Tech in Computer Science & Engineering',
     organization: 'Ramdeobaba University (RBU)',
     location: 'Nagpur, Maharashtra',
-    description: 'Commenced undergraduate engineering studies. Building strong foundations in data structures, algorithms, discrete math, and computer programming while actively participating in technical community auditions.',
-    takeaway: 'Focusing on deep conceptual understanding paired with daily code commits.',
+    description: 'First-year CSE undergraduate building core foundations in C programming, Python, and problem solving while turning early product ideas into working prototypes.',
+    takeaway: 'Pairing classroom fundamentals with consistent hands-on building.',
     isCurrent: true,
   },
   {
@@ -239,60 +264,18 @@ export const MILESTONES: Milestone[] = [
     title: 'First Client Solution Shipped',
     organization: 'Client Business & PDF App',
     location: 'Nagpur / Remote',
-    description: 'Gathered requirements from an actual commercial client, designed an easy-to-use application for PDF handling and document workflows, and delivered a production-ready tool.',
-    takeaway: 'Learned the importance of user empathy, constraint management, and edge-case testing.',
+    description: 'Worked directly from a real client’s requirements to customize and deliver a practical PDF and day-to-day business utility.',
+    takeaway: 'Learned requirement clarity, user empathy, and shipping software people actually use.',
     isCurrent: false,
   },
   {
     year: '2026',
-    period: 'Recruitment & Community',
-    title: 'Technical Club Recruitment Showcase',
-    organization: 'Technical Club Recruitment 2026',
-    location: 'RBU Campus',
-    description: 'Developed an interactive portfolio website adhering to Domain 02 Web Development guidelines, featuring live interactive game mechanics and clean design.',
-    takeaway: 'Demonstrating clean engineering, live code demonstration readiness, and creative problem solving.',
+    period: 'Independent Builds',
+    title: 'Food Safety App & Logic Game Prototypes',
+    organization: 'Personal Product Lab',
+    location: 'Nagpur, Maharashtra',
+    description: 'Started a food safety inspection app and two playable logic games to practice application structure, state transitions, and interactive user flows.',
+    takeaway: 'Growing every week by experimenting, iterating, and building in public.',
     isCurrent: false,
-  }
-];
-
-export const AUDITION_PREPARATION: AuditionPoint[] = [
-  {
-    topic: 'Task Choice & Objective',
-    question: 'Which task did you choose and why?',
-    keyAnswer: 'I unified Task 1 (Personal Portfolio) and Task 2 & 3 (Mini Games & Gamified Portfolio) to demonstrate both clean web design and functional JavaScript game state management.',
-    technicalDetails: [
-      'Built with semantic HTML5, modern CSS3 layout techniques (Grid/Flexbox), and modular JavaScript/TypeScript.',
-      'Includes live playable games (Tic-Tac-Toe with Minimax heuristic & Binary Logic Guessing) right on the page.',
-      'Clean typography and layout inspired by production engineering standards.'
-    ]
-  },
-  {
-    topic: 'Real-World Client Experience',
-    question: 'Tell us about the client app you delivered.',
-    keyAnswer: 'I built the Client Business & PDF App to solve real document handling bottlenecks for a commercial client, automating receipt generation, collation, and daily business file operations.',
-    technicalDetails: [
-      'Focused on intuitive client workflows so non-technical users can process documents without confusion.',
-      'Handled file I/O safely and provided immediate preview states before document generation.',
-      'Showcased my ability to take ambiguous requirements and ship working software.'
-    ]
-  },
-  {
-    topic: 'Code Quality & Tech Stack Rationale',
-    question: 'How do you structure your code and debug issues?',
-    keyAnswer: 'I prioritize clean semantic structure, single-responsibility functions, and accessible DOM hierarchies over unnecessary complexity or bloated dependencies.',
-    technicalDetails: [
-      'Separation of concerns: clean data models, pure helper functions, and decoupled state management.',
-      'Leverage browser DevTools console, network tabs, and structured console logs for rapid triage.',
-      'Use AI tools responsibly for research and edge cases while understanding every line of code myself.'
-    ]
-  },
-  {
-    topic: 'Growth & Future Roadmap',
-    question: 'What are your goals in the Technical Club?',
-    keyAnswer: 'I want to collaborate with seniors and peers on campus products, contribute to hackathons, expand from frontend fundamentals to full-stack systems, and explore 3D graphics.',
-    technicalDetails: [
-      'Strong daily work ethic: "Consistency beats natural talent."',
-      'Ready to take on club responsibilities, maintain club web assets, and mentor incoming juniors next year.'
-    ]
   }
 ];

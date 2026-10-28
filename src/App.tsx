@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Navbar } from './components/Navbar';
+import { ScrollProgress } from './components/ScrollProgress';
 import { Hero } from './components/Hero';
 import { StatsStrip } from './components/StatsStrip';
 import { About } from './components/About';
@@ -10,53 +11,63 @@ import { Journey } from './components/Journey';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ResumeModal } from './components/ResumeModal';
-import { AuditionDrawer } from './components/AuditionDrawer';
+import { PortfolioTheme } from './types';
 
 export default function App() {
-  const [isDark, setIsDark] = useState<boolean>(() => {
+  const [theme, setTheme] = useState<PortfolioTheme>(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('harsh-portfolio-theme');
-      if (saved) return saved === 'dark';
-      return true; // Default dark-first theme as requested in Harsh's initial build
+      const saved = localStorage.getItem('harsh-portfolio-vibe');
+      if (saved === 'noir' || saved === 'barcelona' || saved === 'paper') {
+        return saved;
+      }
     }
-    return true;
+    return 'noir';
   });
 
   const [resumeOpen, setResumeOpen] = useState(false);
-  const [auditionOpen, setAuditionOpen] = useState(false);
+  const mainRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (isDark) {
+    if (theme === 'noir') {
       document.documentElement.classList.add('dark');
-      localStorage.setItem('harsh-portfolio-theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
-      localStorage.setItem('harsh-portfolio-theme', 'light');
     }
-  }, [isDark]);
+    localStorage.setItem('harsh-portfolio-vibe', theme);
+  }, [theme]);
 
   const toggleTheme = () => {
-    setIsDark(!isDark);
+    setTheme((prev) => (prev === 'noir' ? 'paper' : 'noir'));
   };
 
+  const canvasClass =
+    theme === 'noir'
+      ? 'noir-canvas text-slate-100'
+      : theme === 'barcelona'
+        ? 'barcelona-canvas text-slate-900'
+        : 'paper-canvas text-slate-900';
+
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-200">
+    <div className={`min-h-screen transition-colors duration-300 overflow-x-clip ${canvasClass}`}>
+      {/* Viewport Scroll Progress Indicator */}
+      <ScrollProgress mainRef={mainRef} theme={theme} />
+
       {/* Primary Top Bar */}
       <Navbar
+        theme={theme}
+        onToggleTheme={toggleTheme}
         onOpenResume={() => setResumeOpen(true)}
-        onOpenAudition={() => setAuditionOpen(true)}
-        isDark={isDark}
-        toggleTheme={toggleTheme}
       />
 
       {/* Main Content */}
-      <main>
+      <main ref={mainRef}>
         <Hero
-          onOpenAudition={() => setAuditionOpen(true)}
+          theme={theme}
+          onChangeTheme={setTheme}
           onOpenResume={() => setResumeOpen(true)}
         />
         <StatsStrip />
-        <About onOpenAudition={() => setAuditionOpen(true)} />
+        <About />
         <Projects />
         <Skills />
         <InteractiveGames />
@@ -66,19 +77,15 @@ export default function App() {
 
       {/* Footer */}
       <Footer
+        theme={theme}
+        onChangeTheme={setTheme}
         onOpenResume={() => setResumeOpen(true)}
-        onOpenAudition={() => setAuditionOpen(true)}
       />
 
-      {/* Modals & Overlays */}
+      {/* Resume Modal */}
       <ResumeModal
         isOpen={resumeOpen}
         onClose={() => setResumeOpen(false)}
-      />
-
-      <AuditionDrawer
-        isOpen={auditionOpen}
-        onClose={() => setAuditionOpen(false)}
       />
     </div>
   );
