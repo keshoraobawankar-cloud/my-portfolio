@@ -171,7 +171,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
         level: 'Daily Workflow',
         experience: 'Iterative prompting, feature scaffolding, UI iteration, rapid MVPs',
         details: 'Uses AI engineering tools intentionally to bridge the gap between product ideas and working software while learning how each component fits together.',
-        icon: 'sparkles'
+        icon: 'layers'
       },
       {
         name: 'Debugging & Research',

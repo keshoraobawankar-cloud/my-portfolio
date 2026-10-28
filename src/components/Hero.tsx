@@ -81,25 +81,21 @@ export function Hero({ theme, onChangeTheme, onOpenResume }: HeroProps) {
                       <span className="font-display font-extrabold uppercase tracking-[0.06em] text-white/95 text-[clamp(2.8rem,10vw,8.25rem)] leading-[0.95] px-4 sm:px-6">
                         HARSH BAWANKAR
                       </span>
-                      <svg
-                        className="w-7 h-7 sm:w-12 sm:h-12 text-white/85 shrink-0 mx-3 sm:mx-4"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
+                      <span
+                        className="font-display font-light text-white/60 text-[clamp(2rem,6vw,4.5rem)] leading-none shrink-0 mx-3 sm:mx-4"
                         aria-hidden="true"
                       >
-                        <path d="M12 1.5C12.7 7.2 16.8 11.3 22.5 12C16.8 12.7 12.7 16.8 12 22.5C11.3 16.8 7.2 12.7 1.5 12C7.2 11.3 11.3 7.2 12 1.5Z" />
-                      </svg>
+                        —
+                      </span>
                       <span className="font-display font-extrabold uppercase tracking-[0.06em] text-white/95 text-[clamp(2.8rem,10vw,8.25rem)] leading-[0.95] px-4 sm:px-6">
                         HARSH BAWANKAR
                       </span>
-                      <svg
-                        className="w-7 h-7 sm:w-12 sm:h-12 text-white/85 shrink-0 mx-3 sm:mx-4"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
+                      <span
+                        className="font-display font-light text-white/60 text-[clamp(2rem,6vw,4.5rem)] leading-none shrink-0 mx-3 sm:mx-4"
                         aria-hidden="true"
                       >
-                        <path d="M12 1.5C12.7 7.2 16.8 11.3 22.5 12C16.8 12.7 12.7 16.8 12 22.5C11.3 16.8 7.2 12.7 1.5 12C7.2 11.3 11.3 7.2 12 1.5Z" />
-                      </svg>
+                        —
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -243,16 +239,7 @@ export function Hero({ theme, onChangeTheme, onOpenResume }: HeroProps) {
                         isNoir ? 'text-white' : 'text-slate-950'
                       }`}
                     >
-                      Harsh Bawankar{' '}
-                      <motion.span
-                        animate={{ rotate: [0, 12, -8, 0], scale: [1, 1.12, 1] }}
-                        transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
-                        className="inline-block align-middle text-[#f5c469] mx-0.5"
-                        aria-hidden="true"
-                      >
-                        ✦
-                      </motion.span>{' '}
-                      is a{' '}
+                      Harsh Bawankar is a{' '}
                       <span className={isNoir ? 'text-white/90' : 'text-slate-800'}>
                         B.Tech CSE Student, App Builder and Aspiring Entrepreneur.
                       </span>

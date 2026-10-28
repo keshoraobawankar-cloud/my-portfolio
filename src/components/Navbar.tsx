@@ -57,23 +57,15 @@ export function Navbar({ theme, onToggleTheme, onOpenResume }: NavbarProps) {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between gap-6 lg:gap-8 h-16 sm:h-20">
-            {/* Zone 1: Single brand element */}
+            {/* Zone 1: Single brand wordmark */}
             <a
               href="#hero"
               onClick={() => sounds.playClick()}
-              className={`inline-flex items-center gap-2 text-base sm:text-lg font-bold tracking-tight whitespace-nowrap shrink-0 transition-opacity hover:opacity-80 ${
+              className={`font-display inline-flex items-center text-base sm:text-lg font-extrabold tracking-tight whitespace-nowrap shrink-0 transition-opacity hover:opacity-80 ${
                 isNoir ? 'text-white' : 'text-slate-950'
               }`}
             >
-              <svg
-                className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 text-indigo-500 dark:text-indigo-400"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M12 1.5C12.7 7.2 16.8 11.3 22.5 12C16.8 12.7 12.7 16.8 12 22.5C11.3 16.8 7.2 12.7 1.5 12C7.2 11.3 11.3 7.2 12 1.5Z" />
-              </svg>
-              <span>Harsh Bawankar</span>
+              Harsh Bawankar
             </a>
 
             {/* Zone 2: 5 concise single-line text navigation links */}

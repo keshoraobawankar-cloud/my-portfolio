@@ -48,7 +48,7 @@ export function Footer({ theme, onChangeTheme, onOpenResume }: FooterProps) {
               Toolkit
             </a>
             <a
-              href="#games"
+              href="#arcade"
               onClick={() => sounds.playClick()}
               className="hover:text-slate-900 dark:hover:text-white transition-colors"
             >

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Code, Layout, Zap, Terminal, FileCode, GitBranch, Sparkles, Box, CheckCircle, Cpu, Users, X } from 'lucide-react';
+import { Code, Layout, Zap, Terminal, FileCode, GitBranch, Layers, Compass, Box, CheckCircle, Cpu, Users, X } from 'lucide-react';
 import { SKILL_CATEGORIES } from '../data/portfolioData';
 import { sounds } from '../utils/audio';
 
@@ -26,8 +26,8 @@ export function Skills() {
         return FileCode;
       case 'git-branch':
         return GitBranch;
-      case 'sparkles':
-        return Sparkles;
+      case 'layers':
+        return Layers;
       case 'box':
         return Box;
       case 'check-circle':
@@ -131,7 +131,7 @@ export function Skills() {
         {/* Active Curiosity Strip */}
         <div className="mt-8 p-4 sm:p-5 rounded-2xl border border-slate-200/90 dark:border-slate-800/95 bg-white/85 dark:bg-slate-900/75 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono">
           <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold uppercase tracking-wider shrink-0">
-            <Sparkles className="w-4 h-4 text-amber-500 shrink-0" />
+            <Compass className="w-4 h-4 text-indigo-500 shrink-0" />
             <span>Active Horizons:</span>
           </div>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-slate-600 dark:text-slate-300">

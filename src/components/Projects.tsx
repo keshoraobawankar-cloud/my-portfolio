@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { ArrowUpRight, Play, CheckCircle2, Clock, Radio, FileText, Shield, Gamepad2, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Play, CheckCircle2, Clock, Radio, FileText, Shield, Gamepad2, Globe } from 'lucide-react';
 import { PROJECTS } from '../data/portfolioData';
 import { Project } from '../types';
 import { ProjectModal } from './ProjectModal';
@@ -234,7 +234,7 @@ export function Projects() {
                         <div className="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 min-w-0">
                           {project.category === 'product' && <Shield className="w-4 h-4 text-indigo-500 shrink-0" />}
                           {project.category === 'game' && <Gamepad2 className="w-4 h-4 text-cyan-500 shrink-0" />}
-                          {project.category === 'web' && <Sparkles className="w-4 h-4 text-emerald-500 shrink-0" />}
+                          {project.category === 'web' && <Globe className="w-4 h-4 text-emerald-500 shrink-0" />}
                           <span className="uppercase truncate">{project.category}</span>
                           <span aria-hidden="true">·</span>
                           <span>{project.year}</span>
