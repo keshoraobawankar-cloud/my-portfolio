@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { Terminal as TerminalIcon, Send, RefreshCw, Check, Copy } from 'lucide-react';
-import { PERSONAL_INFO } from '../data/portfolioData';
+import { getPortfolioData } from '../data/portfolioData';
+import { getTranslations } from '../data/translations';
+import { useLocale } from '../context/LocaleContext';
 import { sounds } from '../utils/audio';
 
 interface TerminalCardProps {
@@ -9,27 +11,31 @@ interface TerminalCardProps {
   onOpenResume: () => void;
 }
 
-const INTRO_LINE_1 = `${PERSONAL_INFO.fullName} · 1st Year B.Tech CSE @ RBU, Nagpur`;
-const INTRO_LINE_2 = `"${PERSONAL_INFO.coreTenet}"`;
-
 export function TerminalCard({
   onNavigateToProjects,
   onNavigateToSkills,
   onOpenResume,
 }: TerminalCardProps) {
+  const { locale } = useLocale();
+  const t = getTranslations(locale);
+  const { personalInfo } = getPortfolioData(locale);
+
+  const introLine1 = t.terminal.introLine1;
+  const introLine2 = `"${personalInfo.coreTenet}"`;
+
   const [activeTab, setActiveTab] = useState<'profile' | 'interactive' | 'stack'>('profile');
   const [commandInput, setCommandInput] = useState('');
   const [typedIntro, setTypedIntro] = useState('');
   const [typingDone, setTypingDone] = useState(false);
 
-  const [history, setHistory] = useState<Array<{ command: string; output: string | React.ReactNode }>>([
+  const [history, setHistory] = useState<Array<{ command: string; output: string | React.ReactNode }>>(() => [
     {
       command: 'whoami',
-      output: `${PERSONAL_INFO.fullName} · 1st Year B.Tech CSE at Ramdeobaba University (RBU), Nagpur.`,
+      output: t.terminal.whoamiOutput,
     },
     {
       command: 'cat creed.txt',
-      output: `"${PERSONAL_INFO.coreTenet}" — ${PERSONAL_INFO.subPhilosophy}`,
+      output: `"${personalInfo.coreTenet}" — ${personalInfo.subPhilosophy}`,
     },
   ]);
 
@@ -37,12 +43,25 @@ export function TerminalCard({
   const terminalEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    setHistory([
+      {
+        command: 'whoami',
+        output: t.terminal.whoamiOutput,
+      },
+      {
+        command: 'cat creed.txt',
+        output: `"${personalInfo.coreTenet}" — ${personalInfo.subPhilosophy}`,
+      },
+    ]);
+  }, [locale, t.terminal.whoamiOutput, personalInfo.coreTenet, personalInfo.subPhilosophy]);
+
+  useEffect(() => {
     const prefersReduced =
       typeof window !== 'undefined' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (prefersReduced) {
-      setTypedIntro(INTRO_LINE_1);
+      setTypedIntro(introLine1);
       setTypingDone(true);
       return;
     }
@@ -53,15 +72,15 @@ export function TerminalCard({
 
     const interval = window.setInterval(() => {
       index += 1;
-      setTypedIntro(INTRO_LINE_1.slice(0, index));
-      if (index >= INTRO_LINE_1.length) {
+      setTypedIntro(introLine1.slice(0, index));
+      if (index >= introLine1.length) {
         window.clearInterval(interval);
         setTypingDone(true);
       }
     }, 22);
 
     return () => window.clearInterval(interval);
-  }, []);
+  }, [introLine1]);
 
   useEffect(() => {
     if (activeTab === 'interactive') {
@@ -77,34 +96,34 @@ export function TerminalCard({
 
     switch (cleanCmd) {
       case 'help':
-        output = 'Available commands: whoami, projects, skills, contact, resume, clear, date';
+        output = t.terminal.commands.help;
         break;
       case 'whoami':
-        output = `${PERSONAL_INFO.fullName} — ${PERSONAL_INFO.headline}`;
+        output = `${personalInfo.fullName} — ${personalInfo.headline}`;
         break;
       case 'projects':
         output = (
           <div className="space-y-1">
-            <p>1. Client Business &amp; PDF App (Shipped)</p>
-            <p>2. Food Safety &amp; Quality Inspection App (In Progress)</p>
-            <p>3. Logic Game Projects &amp; Arcade (Playable Live)</p>
+            {t.terminal.commands.projects.map((line) => (
+              <p key={line}>{line}</p>
+            ))}
             <button
               onClick={onNavigateToProjects}
               className="text-indigo-400 hover:underline inline-flex items-center gap-1 cursor-pointer"
             >
-              Jump to Projects section ↘
+              {t.terminal.commands.jumpToProjects}
             </button>
           </div>
         );
         break;
       case 'skills':
-        output = 'C Programming, Python, AI-Assisted Prototyping & Debugging, Git/GitHub, Product Flow';
+        output = t.terminal.commands.skills;
         break;
       case 'contact':
-        output = `Primary: ${PERSONAL_INFO.email} | RBU: ${PERSONAL_INFO.secondaryEmail} | Phone: ${PERSONAL_INFO.phone}`;
+        output = `${t.terminal.commands.contactPrimary}: ${personalInfo.email} | ${t.terminal.commands.contactRbu}: ${personalInfo.secondaryEmail} | ${t.terminal.commands.contactPhone}: ${personalInfo.phone}`;
         break;
       case 'resume':
-        output = 'Opening official resume preview...';
+        output = t.terminal.commands.resumeOpening;
         onOpenResume();
         break;
       case 'clear':
@@ -112,13 +131,13 @@ export function TerminalCard({
         setCommandInput('');
         return;
       case 'date':
-        output = new Date().toLocaleString();
+        output = new Date().toLocaleString(locale === 'hi' ? 'hi-IN' : 'en-US');
         break;
       case 'coffee':
-        output = 'Fueled by curiosity, daily code practice, and steady consistency.';
+        output = t.terminal.commands.coffee;
         break;
       default:
-        output = `Command not recognized: "${cmd}". Type "help" for available commands.`;
+        output = `${t.terminal.commands.unknownPrefix} "${cmd}". ${t.terminal.commands.unknownSuffix}`;
     }
 
     setHistory((prev) => [...prev, { command: cmd, output }]);
@@ -126,7 +145,7 @@ export function TerminalCard({
   };
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText(PERSONAL_INFO.email);
+    navigator.clipboard.writeText(personalInfo.email);
     setCopiedEmail(true);
     sounds.playSuccess();
     setTimeout(() => setCopiedEmail(false), 2000);
@@ -160,7 +179,7 @@ export function TerminalCard({
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            Profile
+            {t.terminal.tabs.profile}
           </button>
           <button
             onClick={() => {
@@ -173,7 +192,7 @@ export function TerminalCard({
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            Toolkit
+            {t.terminal.tabs.stack}
           </button>
           <button
             onClick={() => {
@@ -187,7 +206,7 @@ export function TerminalCard({
             }`}
           >
             <TerminalIcon className="w-3 h-3" />
-            <span>Shell</span>
+            <span>{t.terminal.tabs.interactive}</span>
           </button>
         </div>
       </div>
@@ -220,9 +239,9 @@ export function TerminalCard({
                 <span className="text-slate-200">cat creed.txt</span>
               </div>
               <div className="pl-4 space-y-1">
-                <p className="text-amber-200/95 font-semibold">{INTRO_LINE_2}</p>
+                <p className="text-amber-200/95 font-semibold">{introLine2}</p>
                 <p className="text-slate-400 text-[11px] font-sans leading-relaxed">
-                  {PERSONAL_INFO.subPhilosophy}
+                  {personalInfo.subPhilosophy}
                 </p>
               </div>
             </div>
@@ -230,12 +249,12 @@ export function TerminalCard({
             <div className="pt-2.5 border-t border-slate-800/90 space-y-2">
               <div className="flex items-center justify-between gap-2">
                 <div className="min-w-0">
-                  <span className="text-slate-400">Primary:</span>{' '}
+                  <span className="text-slate-400">{t.terminal.primaryLabel}</span>{' '}
                   <a
-                    href={`mailto:${PERSONAL_INFO.email}`}
+                    href={`mailto:${personalInfo.email}`}
                     className="text-indigo-300 font-medium hover:underline break-all"
                   >
-                    {PERSONAL_INFO.email}
+                    {personalInfo.email}
                   </a>
                 </div>
                 <button
@@ -249,12 +268,12 @@ export function TerminalCard({
                   {copiedEmail ? (
                     <>
                       <Check className="w-3 h-3 text-emerald-400" />
-                      <span>Copied!</span>
+                      <span>{t.terminal.copied}</span>
                     </>
                   ) : (
                     <>
                       <Copy className="w-3 h-3" />
-                      <span>Copy</span>
+                      <span>{t.terminal.copy}</span>
                     </>
                   )}
                 </button>
@@ -262,9 +281,9 @@ export function TerminalCard({
 
               <div className="flex items-center justify-between gap-2 text-[11px] text-slate-400">
                 <div className="truncate">
-                  <span className="text-slate-500">Secondary:</span>{' '}
-                  <a href={`mailto:${PERSONAL_INFO.secondaryEmail}`} className="hover:underline">
-                    {PERSONAL_INFO.secondaryEmail}
+                  <span className="text-slate-500">{t.terminal.secondaryLabel}</span>{' '}
+                  <a href={`mailto:${personalInfo.secondaryEmail}`} className="hover:underline">
+                    {personalInfo.secondaryEmail}
                   </a>
                 </div>
                 <span className="inline-flex items-center gap-1 text-emerald-400 shrink-0">
@@ -287,34 +306,21 @@ export function TerminalCard({
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-              <div className="p-2.5 rounded-lg border border-slate-800 bg-slate-900/70">
-                <span className="font-semibold text-white">Core Languages</span>
-                <p className="text-slate-400 mt-1 text-[11px]">C Programming, Python (Learning)</p>
-              </div>
-
-              <div className="p-2.5 rounded-lg border border-slate-800 bg-slate-900/70">
-                <span className="font-semibold text-white">AI-Assisted Building</span>
-                <p className="text-slate-400 mt-1 text-[11px]">Prototyping, Debugging, MVPs</p>
-              </div>
-
-              <div className="p-2.5 rounded-lg border border-slate-800 bg-slate-900/70">
-                <span className="font-semibold text-white">Workflow &amp; Version</span>
-                <p className="text-slate-400 mt-1 text-[11px]">Git, GitHub, Client Scoping</p>
-              </div>
-
-              <div className="p-2.5 rounded-lg border border-slate-800 bg-slate-900/70">
-                <span className="font-semibold text-white">Active Curiosity</span>
-                <p className="text-slate-400 mt-1 text-[11px]">3D Graphics, Games, Startups</p>
-              </div>
+              {t.terminal.stackCards.map((card) => (
+                <div key={card.title} className="p-2.5 rounded-lg border border-slate-800 bg-slate-900/70">
+                  <span className="font-semibold text-white">{card.title}</span>
+                  <p className="text-slate-400 mt-1 text-[11px]">{card.desc}</p>
+                </div>
+              ))}
             </div>
 
             <div className="pt-2 flex items-center justify-between text-xs">
-              <span className="text-slate-400">Inspect full breakdown:</span>
+              <span className="text-slate-400">{t.terminal.inspectFull}</span>
               <button
                 onClick={onNavigateToSkills}
                 className="text-indigo-300 hover:underline font-semibold cursor-pointer"
               >
-                View Toolkit ↗
+                {t.terminal.viewToolkit}
               </button>
             </div>
           </div>
@@ -323,7 +329,7 @@ export function TerminalCard({
         {activeTab === 'interactive' && (
           <div className="space-y-2.5">
             <div className="text-slate-400 text-[11px]">
-              Tap a quick command or type below:
+              {t.terminal.shellPromptHint}
             </div>
 
             <div className="flex flex-wrap gap-1.5 py-0.5">
@@ -373,7 +379,7 @@ export function TerminalCard({
                 type="text"
                 value={commandInput}
                 onChange={(e) => setCommandInput(e.target.value)}
-                placeholder="type command (help)..."
+                placeholder={t.terminal.shellPlaceholder}
                 className="flex-1 min-w-0 bg-transparent border-none outline-none text-white placeholder:text-slate-500 text-xs font-mono"
               />
               {!commandInput && (
@@ -385,7 +391,7 @@ export function TerminalCard({
               <button
                 type="submit"
                 className="p-1.5 rounded bg-slate-800 text-slate-200 hover:bg-slate-700 transition-colors cursor-pointer shrink-0"
-                aria-label="Run command"
+                aria-label={t.terminal.runCommandAria}
               >
                 <Send className="w-3 h-3" />
               </button>

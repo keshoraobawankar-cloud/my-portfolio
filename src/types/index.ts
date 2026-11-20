@@ -1,22 +1,25 @@
-export type PortfolioTheme = 'noir' | 'barcelona' | 'paper';
+export type PortfolioTheme = 'noir' | 'barcelona' | 'paper' | 'comic' | 'playground' | 'system';
+export type Locale = 'en' | 'hi';
 
 export interface Project {
   id: string;
   title: string;
-  category: 'client' | 'product' | 'game' | 'web';
-  status: 'Shipped' | 'In Progress' | 'Live';
+  category: 'client' | 'product' | 'game' | 'web' | 'design';
+  status: 'Shipped' | 'In Progress' | 'Live' | 'Case Study';
   statusType: 'delivered' | 'progress' | 'live';
   subtitle: string;
   description: string;
   problemStatement: string;
   solutionSummary: string;
+  processSteps?: string[];
+  resultSummary?: string;
   technologies: string[];
   highlights: string[];
   clientOrContext: string;
   year: string;
   role: string;
   hasInteractiveDemo: boolean;
-  demoType?: 'pdf-app' | 'food-safety' | 'game-logic';
+  demoType?: 'pdf-app' | 'food-safety' | 'game-logic' | 'ux-redesign' | 'brand-system';
 }
 
 export interface SkillCategory {
